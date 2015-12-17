@@ -2,19 +2,27 @@
 # tasks file for opstree.mongo
 
 - name: Creates backup directory ...
-  file: path={{ backup_dir }} state=directory
+  file: path={{ mongo_backup_dir }} state=directory
 
 - name: mongo backup ...
-  command: mongodump --out {{ backup_dir }}
+  command: mongodump --out {{ mongo_backup_dir }}
   when: password_less_login
 
 - name: mongo backup ...
-  command: mongodump --username {{ userName }} --password {{ passWd }} --out {{ backup_dir }}
+  command: mongodump --username {{ mongo_database_username }} --password {{ mongo_database_passwd }} --out {{ mongo_backup_dir }}
   when: password_login
 
+- name: mongo backup ..
+  command: mongodump --username {{ mongo_database_username }} --db {{ mongo_database_name }} --password {{ mongo_database_passwd }} --out {{ mongo_backup_dir }}
+  when: backup_for_spaecfice_database
+
+- name: mongo backup ..
+  command: mongodump --username {{ mongo_database_username }} --password {{ mongo_database_passwd }} --collection {{ mongo_collection_name }} --db {{ mongo_database_name }} --out {{ mongo_backup_dir }}
+  when: backup_for_spaecfice_collection
+
 - name: mongo backup.zip
-  command: tar -cvf {{ backup_dir }}/backup.tar.gz {{ backup_dir }}
+  command: tar -cvf {{ mongo_backup_dir }}/{{ ansible_hostname }}-{{ ansible_date_time.date }}:{{ ansible_date_time.time }}-backup.tar.gz {{ mongo_backup_dir }}
   
-- name: upload in s3 bucket ...
-  command: aws s3 cp {{ backup_dir }}/backup.tar.gz s3://{{ buket_name }}/{{ aws_dir_name }}.tar.gz
+- name: upload in s3 bucket ...C
+  command: aws s3 cp {{ mongo_backup_dir }}/{{ ansible_hostname }}-{{ ansible_date_time.date }}:{{ ansible_date_time.time }}-backup.tar.gz s3://{{ s3_buket_name }}
 
