@@ -8,7 +8,7 @@ Role Variables
 --------------
 mongo_backup_dir: "/opt/backup"
 
-s3_buket_name: "opstree"
+s3_bucket_name: "opstree"
 
 aws_dir_name: "backupmongo"
 
