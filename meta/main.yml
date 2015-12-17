@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: alok
-  description: Quick and easy mybb web installer.
+  description: Quick and easy mongodb backup.
   company: Opstree
   license: MIT
   min_ansible_version: 1.9
