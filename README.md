@@ -8,7 +8,7 @@ Role Variables
 --------------
 mongo_backup_dir: "/opt/backup"
 
-s3_buket_name: "redcrackle"
+s3_buket_name: "opstree"
 
 aws_dir_name: "backupmongo"
 
@@ -41,7 +41,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: mybb_hosts
       roles:
-         - { role: sandy724.MyBB }
+         - { role: sandy724.MongoBackupRestorer }
 
 License
 -------
