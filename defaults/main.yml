@@ -1,7 +1,7 @@
 ---
 # defaults file for opstree.mongo
 mongo_backup_dir: "/opt/backup"
-s3_buket_name: "redcrackle"
+s3_bucket_name: "opstree"
 aws_dir_name: "backupmongo"
 mongo_database_username: "opstree"
 mongo_database_passwd: "opstree"
