@@ -14,11 +14,11 @@
 
 - name: mongo backup of a particular database..
   command: mongodump --username {{ mongo_database_username }} --db {{ mongo_database_name }} --password {{ mongo_database_passwd }} --out {{ mongo_backup_dir }}
-  when: backup_for_spaecfice_database
+  when: backup_for_specific_database
 
 - name: mongo backup of a collection in a database..
   command: mongodump --username {{ mongo_database_username }} --password {{ mongo_database_passwd }} --collection {{ mongo_collection_name }} --db {{ mongo_database_name }} --out {{ mongo_backup_dir }}
-  when: backup_for_spaecfice_collection
+  when: backup_for_specific_collection
 
 - name: mongo backup.zip
   command: tar -cvf {{ mongo_backup_dir }}/{{ ansible_hostname }}-{{ ansible_date_time.date }}:{{ ansible_date_time.time }}-backup.tar.gz {{ mongo_backup_dir }}

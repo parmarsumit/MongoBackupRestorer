@@ -9,5 +9,5 @@ mongo_database_name: "admin"
 mongo_collection_name: "people"
 password_less_login: false
 password_login: false
-backup_for_spaecfice_database: false
-backup_for_spaecfice_collection: true
+backup_for_specific_database: false
+backup_for_specific_collection: true
